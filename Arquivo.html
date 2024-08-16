@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcerias e Repasse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #F8F8FF; /* Azul claro para combinar com a meta */
+            color: #000; /* Título em preto */
+        }
+        tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(even) {
+            background-color: #ffffff;        }
+        tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        .meta-rede-1 {
+            background-color: #F8F8FF; /* Azul claro */
+        }
+        .percent-1 {
+            background-color: #F8F8FF; /* Azul claro */
+        }
+        .meta-rede-2 {
+            background-color: #F0FFFF; /* Laranja claro */
+        }
+        .percent-2 {
+            background-color: #F0FFFF; /* Laranja claro */
+        }
+        .meta-rede-3 {
+            background-color: #F8F8FF; /* Verde claro */
+        }
+        .percent-3 {
+            background-color: #F8F8FF; /* Verde claro */
+        }
+        .meta-rede-4 {
+            background-color: #F0FFFF; /* Roxo claro */
+        }
+        .percent-4 {
+            background-color: #F0FFFF; /* Roxo claro */
+        }
+        .meta-rede-5 {
+            background-color: #F8F8FF; /* Salmão claro */
+        }
+        .percent-5 {
+            background-color: #F8F8FF; /* Salmão claro */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #000;">Parcerias e Repasse</h1>
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar na tabela...">
+    <button onclick="downloadTableAsImage()">Baixar como PNG</button>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Parceria</th>
+                <th>Meta Rede 1</th>
+                <th>Porcentagem 1</th>
+                <th>Meta Rede 2</th>
+                <th>Porcentagem 2</th>
+                <th>Meta Rede 3</th>
+                <th>Porcentagem 3</th>
+                <th>Meta Rede 4</th>
+                <th>Porcentagem 4</th>
+                <th>Meta Rede 5</th>
+                <th>Porcentagem 5</th>
+                <th>Meta</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ATIVA</td>
+                <td>ANB</td>
+                <td class="meta-rede-1">Medicamentos: 2 milhões</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Medicamentos: 3 milhões</td>
+                <td class="percent-2">1,00%</td>
+                <td class="meta-rede-3">Genéricos: 350 mil</td>
+                <td class="percent-3">1,00%</td>
+                <td class="meta-rede-4">Genéricos: 450 mil</td>
+                <td class="percent-4">1,25%</td>
+                <td class="meta-rede-5">Genéricos: 550 mil</td>
+                <td class="percent-5">1,50%</td>
+                <td>Medicamentos: 2 milhões a 3 milhões<br>Genéricos: 350 mil a 650 mil</td>
+                <td>Exceto: Perfumaria, promoções, Termolábeis, importados. Genéricos exceto onerosos.</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>BLUMED</td>
+                <td class="meta-rede-1">Até R$ 80.000</td>
+                <td class="percent-1">1%</td>
+                <td class="meta-rede-2">Até R$ 100.000</td>
+                <td class="percent-2">1,50%</td>
+                <td class="meta-rede-3">Acima de R$ 100.000</td>
+                <td class="percent-3">2%</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Até R$ 80.000 - 1%<br>Até R$ 100.000 - 1,5%<br>Acima de R$ 100.000 - 2%</td>
+                <td>Medicamentos, exceto: fraldas, cosméticos, perfumaria geral, varejinho, correlatos, desc incondicionais, OL, devoluções e ICMS ST</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>CEGEMED</td>
+                <td class="meta-rede-1">Acima de R$ 35.000</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Acima de R$ 45.000</td>
+                <td class="percent-2">0,75%</td>
+                <td class="meta-rede-3">Acima de R$ 55.000</td>
+                <td class="percent-3">1%</td>
+                <td class="meta-rede-4">Acima de R$ 65.000</td>
+                <td class="percent-4">1,25%</td>
+                <td class="meta-rede-5">Acima de R$ 75.000</td>
+                <td class="percent-5">1,50%</td>
+                <td>Acima de R$ 35.000 - 0,5%<br>Acima de R$ 45.000 - 0,75%<br>Acima de R$ 55.000 - 1%<br>Acima de R$ 65.000 - 1,25%<br>Acima de R$ 75.000 - 1,50%</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>COTEFÁCIL</td>
+                <td class="meta-rede-1">-</td>
+                <td class="percent-1">20,00%</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Repasse de 20% da mensalidade que a loja paga para o Cote Facil</td>
+                <td>Repasse de 20% da mensalidade que a loja paga para o Cote Facil</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>DIMEBRAS</td>
+                <td class="meta-rede-1">Obj 250.000</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Obj 325 mil</td>
+                <td class="percent-2">0,75%</td>
+                <td class="meta-rede-3">Obj 400 mil</td>
+                <td class="percent-3">1%</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Obj 250.000 - 0,5%<br>Obj 325 mil - 0,75%<br>Obj 400 mil - 1%</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>DIMED</td>
+                <td class="meta-rede-1">Medicamentos</td>
+                <td class="percent-1">1%</td>
+                <td class="meta-rede-2">Genéricos</td>
+                <td class="percent-2">1%</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Medicamentos e Genéricos: 1%</td>
+                <td>Medicamentos geral e genérico. Exceto impostos e laboratórios onerosos</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>DM DISTRIBUIDORA</td>
+                <td class="meta-rede-1">Objetivo mínimo R$ 100.000,00</td>
+                <td class="percent-1">0,5% ou 1,5% conforme indústria</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Objetivo mínimo mensal da rede R$ 100.000,00</td>
+                <td>Mídia 1% sobre compras de Danone, toalitas, omron, p&g, teuto, r2m, medix, farmax, incoterm, novartis, gtech, multilaser, teuto exclusivo, blau, sandoz, mabra, haleon, inal air, ziinziin, eurofarma, neoquimica, analitic, nurmask, medley, amg, bioland, germed, basall, ranbaxy, pratidonaduzzi. Mídia 3%: cimed, geolab, cifarma, airela, cifarma exclusivo, vitamedic. Mídia 0%: EMS Gen e teuto oneroso soma na meta mas não é pago repasse sobre a compra.</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>DROGACENTER</td>
+                <td class="meta-rede-1">Acima de 231 mil</td>
+                <td class="percent-1">0,20%</td>
+                <td class="meta-rede-2">Acima de 286 mil</td>
+                <td class="percent-2">2,20%</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Acima de 231 mil mensal - 0,2%<br>Acima de 286 mil mensal - 2,2%</td>
+                <td>Somente sobre medicamentos, venda líquida sem impostos. Exceto Perfumaria.</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>GAM</td>
+                <td class="meta-rede-1">Acima de R$ 1.800.000</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Acima de R$ 1.900.000</td>
+                <td class="percent-2">0,75%</td>
+                <td class="meta-rede-3">Acima de R$ 2.100.000</td>
+                <td class="percent-3">1%</td>
+                <td class="meta-rede-4">Acima de R$ 2.400.000</td>
+                <td class="percent-4">1,25%</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Acima de R$ 1.800.000 - Med 0,5%<br>Acima de R$ 1.900.000 - Med 0,75%<br>Acima de R$ 2.100.000 - Med 1%<br>Acima de R$ 2.400.000 - Med 1,25%</td>
+                <td>Compra Geral de medicamentos</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>GEBON</td>
+                <td class="meta-rede-1">sem mínimo</td>
+                <td class="percent-1">1,00%</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Repasse de 1% sem mínimo</td>
+                <td>Compra líquida geral</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>MEDCHAP</td>
+                <td class="meta-rede-1">Acima de R$ 250 mil</td>
+                <td class="percent-1">0,75%</td>
+                <td class="meta-rede-2">Acima de R$ 325 mil</td>
+                <td class="percent-2">1%</td>
+                <td class="meta-rede-3">Acima de R$ 400 mil</td>
+                <td class="percent-3">1,25%</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Acima de R$ 250 mil - 0,75%<br>Acima de R$ 325 mil - 1%<br>Acima de R$ 400 mil - 1,25%</td>
+                <td>Geral líquido. EXCETO OL. Marcas: ABOVE, FARMAX, HPC, BEAl!TYCOLOR, GIOVANNA, BABY, BLOWTEX, GUM, COLTONBABY, NUAGE, DEP, ROLL, SALON LINE, DRYLOCK, PHOTOSERVAS, EUROFRAL</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>MEDICAMENTAL</td>
+                <td class="meta-rede-1">Acima de R$ 120 mil</td>
+                <td class="percent-1">1,00%</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Acima de R$ 120 mil - 1%</td>
+                <td>Repasse de venda líquida</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>NAVARRO</td>
+                <td class="meta-rede-1">Até R$ 150.000</td>
+                <td class="percent-1">1,25%</td>
+                <td class="meta-rede-2">Acima de R$ 150.001 até R$ 200.000</td>
+                <td class="percent-2">1,50%</td>
+                <td class="meta-rede-3">Acima de R$ 200.001</td>
+                <td class="percent-3">1,75%</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>1,25% para compras até R$ 150.000,00<br>1,50% para compras entre R$ 150.001,00 e R$ 200.000,00<br>1,75% para compras acima de R$ 200.000,00</td>
+                <td>venda liquida</td>
+            </tr>
+            <tr>
+		 <td>ATIVA</td>
+                <td>NOVAMED</td>
+                <td class="meta-rede-1">Obj 170 mil a 209 mil</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Obj 210 mil a 249 mil</td>
+                <td class="percent-2">1%</td>
+                <td class="meta-rede-3">Obj 250 mil a 329 mil</td>
+                <td class="percent-3">1,50%</td>
+                <td class="meta-rede-4">obj acima de 330mil</td>
+                <td class="percent-4">2,00%</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>venda liquida</td>
+                <td>venda liquida</td>
+           </tr>
+           <tr>
+             <td>ATIVA</td>
+                <td>PANPHARMA</td>
+                <td class="meta-rede-1">Sem mínimo. Repasse sobre medicamentos</td>
+                <td class="percent-1">1,85%</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Sem mínimo. Repasse sobre medicamentos</td>
+		<td>Associado recebe direto no Boleto de Medicamentos. Essa mídia não é paga sobre Termolábeis, liberados, ofertas e as indústrias com regras, são elas: SigmaClav/EMS RX/Sanofi/Libbs/Medley</td>
+           </tr>
+           <tr>    <td>ATIVA</td>
+                <td>PROFARMA</td>
+                <td class="meta-rede-1">Obj 948 mil</td>
+                <td class="percent-1">0,25%</td>
+                <td class="meta-rede-2">Obj 1.053 milhão</td>
+                <td class="percent-2">0,39%</td>
+                <td class="meta-rede-3">Obj 1.171 milhão</td>
+                <td class="percent-3">0,54%</td>
+                <td class="meta-rede-4">Obj 1.301 milhão</td>
+                <td class="percent-4">0,71%</td>
+                <td class="meta-rede-5">1.445 milhão</td>
+                <td class="percent-5">0,90%</td>
+                <td>Obj 948mil - 0,25% - Obj 1.053 milhão - 0,39% - Obj 1.171 milhão - 0,54% - Obj 1.301 milhão - 0,71% - Obj 1.445 milhão - 0,90% </td>
+		<td>exceto: devoluções, importados, termolábeis e liberados, ofertas, compra mês abaixo 3000</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>WERBRAN</td>
+                <td class="meta-rede-1">sem mínimo de compras</td>
+                <td class="percent-1">1,00%</td>
+                <td class="meta-rede-2">-</td>
+                <td class="percent-2">-</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>1% de repasse sem mínimo de compras</td>
+                <td>Operação Logística Direta, como Catarinense, Sandoz, entre outras, não entra repasse.</td>
+            </tr>
+            <tr>
+                <td>ATIVA</td>
+                <td>WM</td>
+                <td class="meta-rede-1">sem mínimo de compras</td>
+                <td class="percent-1">0,50%</td>
+                <td class="meta-rede-2">Acima de R$ 80 mil</td>
+                <td class="percent-2">1%</td>
+                <td class="meta-rede-3">-</td>
+                <td class="percent-3">-</td>
+                <td class="meta-rede-4">-</td>
+                <td class="percent-4">-</td>
+                <td class="meta-rede-5">-</td>
+                <td class="percent-5">-</td>
+                <td>Sem mínimo 0,5%, acima de R$ 80 mil - 1%</td>
+                <td>Medicamentos geral líquido. Exceto abbott</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput').value.toUpperCase();
+            const table = document.getElementById('dataTable');
+            const trs = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < trs.length; i++) {
+                const tds = trs[i].getElementsByTagName('td');
+                let display = 'none';
+                for (let j = 0; j < tds.length; j++) {
+                    if (tds[j].innerHTML.toUpperCase().indexOf(input) > -1) {
+                        display = '';
+                        break;
+                    }
+                }
+                trs[i].style.display = display;
+            }
+        }
+
+        function downloadTableAsImage() {
+            html2canvas(document.querySelector("#dataTable")).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'tabela.png';
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
